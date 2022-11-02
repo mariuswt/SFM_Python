@@ -6,7 +6,9 @@
 # »!=« und »is not«.
 
 # == wird für wertegleichheit verwendet.
-# is frägt nach referenzgleichheit ab, zwei objekte müssen auf das selbe objekt zeigen
+# is fragt nach referenzgleichheit ab, zwei objekte müssen auf dasselbe objekt zeigen
+
+# ALT + SHIFT + E
 a = [1, 2, 3]
 b = a
 c = a[:]
@@ -30,10 +32,12 @@ print(f"a is not c -> {a is not c}\n")
 print(f"Int(225/17) = {int(225/17)} =>  Rest = {225 % 17}")
 
 # 3. Erläutern Sie die Short-Circuit-Evaluation. Nennen Sie ein Beispiel!
-# Bei einem OR verleich ist die Aussage true sobald die erste Bedingung übereinstimmt,
-# nur wenn er false ist wird die zweite Bedingung überprüft
+# Der interpreter kann eine Aussage über den Vergleich treffen, ohne alle Bedingen zu überprüfen
+# Bei einem OR Vergleich ist die Aussage true, sobald die erste Bedingung übereinstimmt,
+# nur wenn er false ist, wird die zweite Bedingung überprüft
 
-# Ist bei einem AND vergleich die erste Bedingung falsch werden die restlichen übersprungen und ebenfalls false ausgegeben
+# Ist bei einem AND vergleich die erste Bedingung falsch werden die restlichen übersprungen und ebenfalls false
+# ausgegeben
 
 # Auswertung von Bedingungen bzw Vergleichen findet von links nach rechts statt.
 print(f"True && True -> {True and True}")
