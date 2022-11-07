@@ -66,4 +66,4 @@ K0 = round(float(input("Anfangskapitalwert: ")), 2)
 p = float(input("Zinssatz: "))
 n = int(input("Jahre: "))
 
-print(f"K0 = {K0:.2f}, n = {n}, p = {p} --> K{n} = { round(K0 * (1 + p/100)**n, 2)}")
+print(f"K0 = {K0:.2f}, n = {n}, p = {p} --> K{n} = {round(K0 * (1 + p/100)**n, 2)}")
