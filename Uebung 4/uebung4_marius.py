@@ -49,6 +49,7 @@ def evluation(true_or_false):
         print("Tested False")
         return False
 
+
 print(f"True && True -> {evluation(True) and evluation(True)}")
 print(f"True && False -> {evluation(True) and evluation(False)}\n")
 
