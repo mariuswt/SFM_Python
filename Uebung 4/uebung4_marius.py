@@ -8,7 +8,7 @@
 # == wird für wertegleichheit verwendet.
 # is fragt nach referenzgleichheit ab, zwei objekte müssen auf dasselbe objekt zeigen
 
-# ALT + SHIFT + E
+### ALT + SHIFT + E
 a = [1, 2, 3]
 b = a
 c = a[:]
@@ -29,7 +29,8 @@ print(f"a is not c -> {a is not c}\n")
 
 # 2. Sie wollen den Rest der Division 225 / 17 ermitteln. Wie lautet die
 # Berechnung in python?
-print(f"Int(225/17) = {int(225/17)} =>  Rest = {225 % 17}")
+print(f"Int(225/17) = {int(225 / 17)} =>  Rest = {225 % 17}")
+
 
 # 3. Erläutern Sie die Short-Circuit-Evaluation. Nennen Sie ein Beispiel!
 # Der interpreter kann eine Aussage über den Vergleich treffen, ohne alle Bedingen zu überprüfen
@@ -40,12 +41,21 @@ print(f"Int(225/17) = {int(225/17)} =>  Rest = {225 % 17}")
 # ausgegeben
 
 # Auswertung von Bedingungen bzw Vergleichen findet von links nach rechts statt.
-print(f"True && True -> {True and True}")
-print(f"True && False -> {True and False}\n")
+def evluation(true_or_false):
+    if true_or_false:
+        print("Tested True")
+        return True
+    else:
+        print("Tested False")
+        return False
 
-print(f"True || True -> {True or True}")
-print(f"True || False -> {True or False}")
-print(f"False || False -> {False or False}\n")
+
+print(f"True && True -> {evluation(True) and evluation(True)}")
+print(f"True && False -> {evluation(True) and evluation(False)}\n")
+
+print(f"True || True -> {evluation(True) or evluation(True)}")
+print(f"True || False -> {evluation(True) or evluation(False)}")
+print(f"False || False -> {evluation(False) or evluation(False)}\n")
 
 # 4. Welchen Datentyp und Wert haben a und b?
 a = 1 + 2 * 3 ** 4
@@ -66,4 +76,4 @@ K0 = round(float(input("Anfangskapitalwert: ")), 2)
 p = float(input("Zinssatz: "))
 n = int(input("Jahre: "))
 
-print(f"K0 = {K0:.2f}, n = {n}, p = {p} --> K{n} = { round(K0 * (1 + p/100)**n, 2)}")
+print(f"K0 = {K0:.2f}, n = {n}, p = {p} --> K{n} = {round(K0 * (1 + p / 100) ** n, 2)}")
