@@ -13,7 +13,11 @@ a == 3 bzw. a != 3
 a is b bzw. a is not b
 
 """
-
+import copy
+a = {5}
+b = copy.copy(a)
+print (id(a))
+print(id(b))
 """
 2. Sie wollen den Rest der Division 225 / 17 ermitteln. Wie lautet die Berechnung in python?
 """
