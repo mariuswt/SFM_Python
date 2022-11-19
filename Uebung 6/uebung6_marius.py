@@ -99,3 +99,22 @@ print(thisdict)
 # mit „-Produkt“ die Anzahl um 1 verkleinern, bzw. das Produkt löschen
 # können. Nach jeder Eingabe soll die Einkaufsliste auf dem Bildschirm
 # ausgegeben werden.
+eingabe = ""
+einkaufsliste = {}
+while eingabe != "stop":
+    eingabe = str(input("Produkt hinzufügen: "))
+    if eingabe[0] == "+":
+        try:
+            if einkaufsliste[eingabe[1:]] > 0:
+                einkaufsliste[eingabe[1:]] += 1
+        except:
+            einkaufsliste.update({eingabe[1:]: 1})
+    if eingabe[0] == "-":
+        try:
+            if einkaufsliste[eingabe[1:]] >= 1:
+                einkaufsliste[eingabe[1:]] -= 1
+                if einkaufsliste[eingabe[1:]] == 0:
+                    einkaufsliste.pop(eingabe[1:])
+        except:
+            print("--- Artikel nicht in in der Liste! ---")
+    print(einkaufsliste, "\n")
