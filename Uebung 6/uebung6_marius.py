@@ -9,9 +9,9 @@ for n in range(7, 100, 7):
 print(liste)
 
 # 2. Welchen Datentyp verwenden Sie, um Lottozahlen zu speichern?
-# A: Die Daten sollten in einem Tuple gespeichert werden, der Inhalt ist nicht veränderbar
-lottozahlen = ('1', '33', '99', '22', '44')
-print(lottozahlen)
+# A: Die Ganzzahligen Werte (INT) sollten in einem Tuple gespeichert werden, der Inhalt ist nicht veränderbar
+lottozahlen = (1, 33, 98, 22, 44, 99, 99)
+print((frozenset(lottozahlen)))
 
 # 3. Schreiben Sie ein Python-Script, das die folgende Matrix umsetzt:
 #
@@ -19,6 +19,7 @@ print(lottozahlen)
 # 5 3 1
 #
 # und danach die Anzahl der Zeilen und die Anzahl der Spalten ausgibt.
+
 A = [[2, 4, 6],
      [5, 3, 1]]
 counter_zeilen = 0
@@ -39,6 +40,7 @@ x = {1, 2, 3, 4, 5, 6, 7, 8, 9}
 y = {"hallo", 1, 2, 22}
 print(x - y)  # Aus x werden die Elemente entfernt die auch in y vorhanden sind
 print(y - x)  # vice versa
+print(x | y)
 
 # 5. Welches sind die gemeinsamen Buchstaben der Wörter „Python“ und
 # „Programmierung“?
@@ -46,6 +48,10 @@ for character in "Python":
     for same_character in "Programmierung":
         if character == same_character:
             print(character)
+
+x = set("Python")
+y = set("Programmierung")
+print(x & y)
 
 # 6. Entfernen Sie die Doppelgänger aus der folgenden Liste von Zahlen:
 # [1, 2, 3, 2, 7, 3, 9]. Die Ergebnisliste soll aufsteigend sortiert sein.
@@ -89,7 +95,7 @@ for number in range(1, 101):
 
 print(prime_dict)
 print(thisdict)
-
+print(list(prime_dict.keys())[1:3])
 # Aufgabe 3
 # Schreiben Sie ein Python-Script, das eine Einkaufsliste verwaltet. Darin
 # sollen die Produkte und die Anzahl als Wert eingetragen werden:
@@ -102,12 +108,12 @@ print(thisdict)
 eingabe = ""
 einkaufsliste = {}
 while eingabe != "stop":
-    eingabe = str(input("Produkt hinzufügen: "))
+    eingabe = str(input("Produkt hinzufügen(+) / entfernen(-) : "))
     if eingabe[0] == "+":
-        try:
-            if einkaufsliste[eingabe[1:]] > 0:
+        try: # if eingabe[1:] in einkaufsliste:
+            if einkaufsliste[eingabe[1:]] > 0: #
                 einkaufsliste[eingabe[1:]] += 1
-        except:
+        except: # else:
             einkaufsliste.update({eingabe[1:]: 1})
     if eingabe[0] == "-":
         try:
