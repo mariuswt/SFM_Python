@@ -97,19 +97,14 @@ def password_calculation(password):
     if len(password) < 8:
         return points
     else:
-        print("8 chars")
         points += 1
     if upper_and_lower(password):
-        print("upper and lower")
         points += 1
     if contains_six_character(password):
-        print("six different")
         points += 1
     if contains_number(password):
-        print("contains number")
         points += 1
     if contains_special_caracter(password):
-        print("special char")
         points += 1
     return points
 
