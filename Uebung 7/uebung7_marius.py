@@ -17,8 +17,7 @@ def min_max(eingang):
             min = element
         if element > max:
             max = element
-    min_max_values = (min, max)
-    return min_max_values
+    return (min, max)
 
 
 feld = [44, 1, 2, 5, 22, 6, 8]
@@ -78,9 +77,9 @@ def upper_and_lower(password):
 
 def contains_six_character(password):
     used_chars = []
-    for element in str(password):
-        if element not in used_chars:
-            used_chars += element
+    for c in str(password):
+        if c not in used_chars:
+            used_chars += c
     if len(used_chars) > 6:
         return True
     return False
@@ -164,10 +163,10 @@ def neues_konto_anlegen():
     return konto
 
 
-def einzahlen(konto):
+def einzahlen(konto_local):
     betrag = abs(float(input("Betrag zum Einzahlen: ")))
-    konto["Kontostand"] += betrag
-    return konto
+    konto_local["Kontostand"] += betrag
+
 
 
 def abheben(konto):
@@ -176,12 +175,10 @@ def abheben(konto):
         konto["Kontostand"] = round(konto["Kontostand"] - betrag, 2)
     else:
         print("KONTOSTAND WIRD NEGATIV")
-    return konto
 
 
 def zinsen_gutschreiben(konto):
-    konto["Kontostand"] = round(konto["Kontostand"] * (1 + (konto["Zinssatz"]/100)), 2)
-    return konto
+    konto["Kontostand"] = round(konto["Kontostand"] * (1 + (konto["Zinssatz"] / 100)), 2)
 
 
 def kontodaten_ausgeben(konto):
@@ -192,23 +189,30 @@ def kontodaten_ausgeben(konto):
           konto['Zinssatz'])
 
 
+def menue():
+    return int(input("\n0. Beenden\n"
+                     "1. Konto neu anlegen\n"
+                     "2. Einzahlen\n"
+                     "3. Abheben\n"
+                     "4. Zinsen gutschreiben\n"
+                     "5. Kontendaten ausgeben\n\n"))
+
+
+first_run = True
 eingabe = 1
 konto = {}
 while eingabe != 0:
 
-    eingabe = int(input("\n1. Konto neu anlegen\n"
-                    "2. Einzahlen\n"
-                    "3. Abheben\n"
-                    "4. Zinsen gutschreiben\n"
-                    "5. Kontendaten ausgeben\n\n"))
-    if eingabe == 1:
+    eingabe = menue()
+    if eingabe == 1 or first_run:
         konto = neues_konto_anlegen()
+        first_run = False
     if eingabe == 2:
-        konto = einzahlen(konto)
+        einzahlen(konto)
     if eingabe == 3:
-        konto = abheben(konto)
+        abheben(konto)
     if eingabe == 4:
-        konto = zinsen_gutschreiben(konto)
+        zinsen_gutschreiben(konto)
     if eingabe == 5:
         kontodaten_ausgeben(konto)
 
@@ -217,3 +221,45 @@ while eingabe != 0:
 # einzelne Aufgaben des Programms in getrennten Funktionen implementiert
 # sind. Versuchen Sie innerhalb der Funktionen keine globale Variable zu
 # verändern.
+
+import random
+
+
+def set_level():
+    level = 0
+    while level < 2:
+        level = int(input("Level setzen [größer als 2]: "))
+    return level
+
+
+def neues_spiel(level):
+    number_to_guess = random.randint(1, 10 * level)
+    guess_counter = 0
+    guess_input = -1
+    while guess_input != number_to_guess:
+        guess_counter += 1
+        guess_input = int(input(f"{guess_counter}. Guess [1 - {10 * level}]: "))
+
+        if guess_input == 0:
+            print(f"Aufgegeben!!! Die Zahl war {number_to_guess}")
+            break
+        if guess_input < number_to_guess:
+            print("Guess was too low")
+        if guess_input > number_to_guess:
+            print("Guess was too high")
+    if guess_input == number_to_guess:
+        print(f"\nDie Eingabe war Korrekt! Benötigte Versuche: {guess_counter}\n")
+
+
+game_selection = ""
+level = 2
+while game_selection != "B":
+    game_selection = str(input("(N)eues Spiel\n"
+                               f"(L)evel [{level}]\n"
+                               "(B)eenden\n"
+                               "\nEingabe: "))
+
+    if game_selection == "N":
+        neues_spiel(level)
+    if game_selection == "L":
+        level = set_level()
