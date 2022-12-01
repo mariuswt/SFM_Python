@@ -8,12 +8,12 @@
 # geeignete Lambda-Funktion.
 
 
-ismodolo = lambda number: number % 7 == 0
+is_modolo_7 = lambda number: number % 7 == 0
 
 liste = list(range(1, 101))
-liste_mod7 = list(filter(ismodolo, liste))
+liste_vielfache_7 = list(filter(is_modolo_7, liste))
 
-print(liste_mod7)
+print(liste_vielfache_7)
 
 # 2. Extrahieren Sie aus der Zeichenkette „Hello, World!“ alle Vokale, verbinden
 # Sie diese zu einer neuen Zeichenkette und geben Sie diese aus.
