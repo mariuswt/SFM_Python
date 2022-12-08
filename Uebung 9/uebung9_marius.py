@@ -12,6 +12,7 @@
 # fahren lässt (Kilometerstand erhöht sich) und die jeweiligen Fahrzeug-Daten
 # ausgibt.
 
+
 class Auto:
     def __init__(self, marke, kilometerstand, farbe, leistung, anzahl_tueren):
         self.marke: str = marke  # public
@@ -29,6 +30,15 @@ class Auto:
 
     def strecke_fahren(self, kilometer):
         self._kilometerstand += kilometer
+
+    @property
+    def kilometerstand(self):
+        print(self._kilometerstand)
+        return self._kilometerstand
+
+    @kilometerstand.setter
+    def kilometerstand(self, value):
+        self.kilometerstand = value
 
 
 def main_auto():
@@ -53,7 +63,8 @@ main_auto()
 
 class Menue:
     def __init__(self):
-        self.menuewahl = 0
+        self.menuewahl = 1
+        self.bank = Bank("Kapitalbank")
 
         # 1. Konto neu anlegen
         # 2. Einzahlen
@@ -61,18 +72,36 @@ class Menue:
         # 4. Zinsen gutschreiben
         # 5. Kontendaten ausgeben
 
+    def menue_anzeigen(self):
+        self.menuewahl = int(input("\n0. Beenden\n"
+                                   "1. Konto neu anlegen\n"
+                                   "2. Einzahlen\n"
+                                   "3. Abheben\n"
+                                   "4. Zinsen gutschreiben\n"
+                                   "5. Kontendaten ausgeben\n\n"))
+        return self.menuewahl
+
     def konto_anlegen(self):
         inhaber = str(input("Kontoinhaber: "))
         blz = input("BLZ: ")
         kontonummer = input("Kontonummer: ")
         kontostand = 0.00
         zinssatz = float(input("Zinssatz: "))
-        konto = Konto(inhaber, blz, kontonummer, kontostand, zinssatz)
-        return konto
+        self.bank.konto_anlegen(Konto(inhaber, blz, kontonummer, kontostand, zinssatz))
 
-    def konto_einzahlen(self, konto):
+    def konto_einzahlen(self):
         betrag = abs(float(input("Betrag zum Einzahlen: ")))
-        konto.einzahlen(betrag)
+        self.bank.konto_einzahlen(betrag)
+
+    def konto_abheben(self):
+        betrag = abs(float(input("Betrag zum Auszahlen: ")))
+        self.bank.konto_abheben(betrag)
+
+    def zinsen_gutschreiben(self):
+        self.bank.konto_zinsen_gutschreiben()
+
+    def konto_anzeigen(self):
+        self.bank.alle_kontodaten_ausgeben()
 
 
 class Konto:
@@ -80,45 +109,69 @@ class Konto:
         self.kontoinhaber = kontoinhaber
         self.bankleitzahl = bankleitzahl
         self.kontonummer = kontonummer
-        self.kontostand = kontostand
+        self.__kontostand = kontostand
         self.zinssatz = zinssatz
 
     def einzahlen(self, betrag):
-        self.kontostand += betrag
+        self.__kontostand += betrag
 
     def abheben(self, betrag):
-        if self.kontostand - betrag >= 0:
-            self.kontostand -= betrag
+        if self.__kontostand - betrag >= 0:
+            self.__kontostand -= betrag
         else:
             print("Kontostand wird negativ!")
 
     def zinsen_gutschreiben(self):
-        self.kontostand = round(self.kontostand * (1 + (self.zinssatz / 100)), 2)
+        self.__kontostand = round(self.__kontostand * (1 + (self.zinssatz / 100)), 2)
 
     def kontodaten_ausgeben(self):
         print(self.kontoinhaber,
               self.bankleitzahl,
               self.kontonummer,
-              self.kontostand,
+              self.__kontostand,
               self.zinssatz)
 
+
 class Bank:
-    def __int__(self):
-        self.__konto = []
+    def __init__(self, name):
+        self.__konto = None
+        self.name = name
 
     def konto_anlegen(self, konto):
-        self.__konto += konto
+        self.__konto = konto
 
-    def konto_entfernen(self, konto):
-        self.__konto.remove(konto)
+    def konto_einzahlen(self, betrag):
+        self.__konto.einzahlen(betrag)
 
-    def kontodaten_ausgeben(self):
-        for konto in self.__konto:
-            print(f"{konto.kontoinhaber}\n"
-                  f"{konto.bankleitzahl}\n"
-                  f"{konto.kontonummer}\n"
-                  f"{konto.kontostand}\n"
-                  f"{konto.zinssatz}\n")
+    def konto_abheben(self, betrag):
+        self.__konto.abheben(betrag)
+
+    def konto_zinsen_gutschreiben(self):
+        self.__konto.zinsen_gutschreiben()
+
+    def alle_kontodaten_ausgeben(self):
+        self.__konto.kontodaten_ausgeben()
+
+
+first_run = True
+eingabe = 1
+menue = Menue()
+while eingabe != 0:
+
+    eingabe = menue.menue_anzeigen()
+    if eingabe == 0:
+        break
+    if eingabe == 1 or first_run:
+        menue.konto_anlegen()
+        first_run = False
+    if eingabe == 2:
+       menue.konto_einzahlen()
+    if eingabe == 3:
+        menue.konto_abheben()
+    if eingabe == 4:
+        menue.zinsen_gutschreiben()
+    if eingabe == 5:
+        menue.konto_anzeigen()
 
 # Schreiben Sie ein Python-Script, das ein Bankkonto verwaltet und
 # verschiedene selbstdefinierte Funktionen verwendet.
