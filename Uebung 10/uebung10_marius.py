@@ -8,7 +8,8 @@
 # durch eine entsprechende property.
 # Ergänzen Sie die vorhandenen Instanzvariablen um:
 # - eine Klassenvariable „automatik“, die im Konstruktor über einen weiteren
-# Parameter von Typ bool belegt wird. Zählen Sie die neu erzeugten AutoObjekte mit und ohne Automatik. Schreiben Sie eine statische Methode,
+# Parameter von Typ bool belegt wird. Zählen Sie die neu erzeugten AutoObjekte mit und ohne Automatik.
+# Schreiben Sie eine statische Methode,
 # welche die Anzahl der Autos mit und ohne Automatik ausgibt.
 # - eine Referenz auf ein Autoradio. Das Programm soll also zusätzlich zu der
 # Klasse „Auto“ noch über eine Klasse „Autoradio“ verfügen. Der __init__()-
@@ -23,7 +24,77 @@
 # und weisen Sie ihnen unterschiedliche Attribute und Autoradios zu. Lassen Sie
 # sich zum Schluss noch die Daten aller Autos mittels der Methode zeige_daten()
 # ausgeben.
+class Autoradio:
+    def __init__(self, markenname: str, cd_player: bool):
+        self.markenname = markenname
+        self.cd_player = cd_player
 
+    def zeige_daten(self):
+        print(f"Radiomarke : {self.markenname}"
+              f"CD-Player  : {self.cd_player}")
+
+
+class Auto:
+    def __init__(self, marke: str, kilometerstand: int, farbe: str, leistung: int, anzahl_tueren: int,
+                 automatik: bool, autoradio: Autoradio):
+        self.marke: str = marke  # public
+        self.__kilometerstand: int = kilometerstand  # private
+        self._farbe: str = farbe  # protected
+        self.leistung: int = leistung
+        self.anzahl_tueren: int = anzahl_tueren
+        self.automatik: bool = automatik
+        self.autoradio = autoradio
+
+    def zeige_daten(self):
+        print(f"\n{self.marke}\n"
+              f"{self.__kilometerstand}\n"
+              f"{self._farbe}\n"
+              f"{self.leistung}\n"
+              f"{self.anzahl_tueren}\n"
+              f"Automatik = {self.automatik}\n")
+
+    def strecke_fahren(self, kilometer):
+        self.__kilometerstand += kilometer
+
+    @property
+    def kilometerstand(self):
+        return self.__kilometerstand
+
+    @kilometerstand.setter
+    def kilometerstand(self, value):
+        self.__kilometerstand = value
+
+    @staticmethod
+    def automatik_zaehlen(args):
+        counter_automatik, counter_ohne_automatik = 0, 0
+        for auto in args:
+            if auto.automatik:
+                counter_automatik += 1
+            else:
+                counter_ohne_automatik += 1
+        print(f"Automatik:  {counter_automatik}\n"
+              f"Ohne Autom.:{counter_ohne_automatik}")
+
+
+def main_auto():
+    radio = Autoradio("Yamaha", True)
+    a = Auto("VW", 100, "gruen", 100, 2, True, radio)
+    b = Auto("Audi", 100000, "blau", 100, 22, False)
+
+    autos = [Auto("VW", 100, "gruen", 100, 2, True),
+             Auto("Audi", 100000, "blau", 100, 22, False),
+             Auto("Porsche", 1000, "silber", 100, 22, True)]
+
+    autos[0].strecke_fahren(500)
+    autos[1].strecke_fahren(50)
+
+    for auto in autos:
+        auto.zeige_daten()
+
+    autos[0].automatik_zaehlen(autos)
+
+
+main_auto()
 
 # Aufgabe 2
 # Implementieren Sie eine Klasse Schrank mit den Instanzvariablen name für den

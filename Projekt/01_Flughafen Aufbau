@@ -1,0 +1,28 @@
+Eine Möglichkeit, das Landesystem in Python zu implementieren, wäre folgende:
+
+Erstelle eine Klasse Airport mit folgenden Attributen:
+
+landing_strips: Eine Liste von freien Landebahnen (beispielsweise als Tupel (name, status), wobei status entweder "frei" oder "belegt" ist)
+parking_spots: Eine Liste von freien Parkpositionen (ebenfalls als Tupel (name, status))
+airlines: Eine Liste von Fluggesellschaften (als Strings)
+aircraft_types: Eine Liste von Flugzeugtypen (als Strings)
+flights: Eine Liste von Flight-Objekten (siehe Schritt 2)
+
+Erstelle eine Klasse Flight mit folgenden Attributen:
+
+airline: Fluggesellschaft (als String)
+aircraft_type: Flugzeugtyp (als String)
+flight_number: Flugnummer (als String)
+scheduled_landing_time: Soll-Zeitpunkt der Landung (als datetime.datetime-Objekt)
+actual_landing_time: Ist-Zeitpunkt der Landung (ebenfalls als datetime.datetime-Objekt)
+landing_strip: Landebahn (als String)
+parking_spot: Parkposition (als String)
+scheduled_departure_time: Soll-Zeitpunkt des Starts (als datetime.datetime-Objekt)
+actual_departure_time: Ist-Zeitpunkt des Starts (ebenfalls als datetime.datetime-Objekt)
+departure_strip: Startbahn (als String)
+
+Erstelle eine Methode register_new_flight in der Klasse Airport, die vom Lotsen aufgerufen werden kann, um ein neues Flugzeug zu erfassen. Die Methode soll folgende Schritte ausführen:
+
+Prüfe, ob die Fluggesellschaft oder der Flugzeugtyp dem System bereits bekannt sind. Wenn nicht, füge sie der Liste airlines bzw. aircraft_types hinzu.
+Erstelle eine neue Flugnummer, indem du die ersten beiden Buchstaben der Fluggesellschaft und danach eine noch nicht vergebene Zahl ab 100 in aufsteigender Reihenfolge anfügst.
+Erstelle ein neues Flight-Objekt mit den übergebenen Attributen und der erstellten Flugnummer und füge es der Liste
