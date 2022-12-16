@@ -94,7 +94,8 @@ def main_auto():
     autos[0].automatik_zaehlen(autos)
 
 
-main_auto()
+#main_auto()
+
 
 # Aufgabe 2
 # Implementieren Sie eine Klasse Schrank mit den Instanzvariablen name für den
@@ -103,13 +104,10 @@ main_auto()
 # Einheitsschränke sowie für einen Konstruktor für einen allgemeinen
 # Schranktyp. Schreiben Sie neben den notwendigen Getter- und SetterMethoden noch die folgenden Methoden:
 # • getVolumen()
-
 # Berechnen des Volumens eines Schrankes.
 # • getPreis()
-
 # Berechnen des Preises eines Schrankes über die Formel preis = cbm*100.-€
 # aus dem Volumen.
-
 # • getInfo()
 # Rückgabe der vollständigen Schrankeigenschaften als Zeichenkette.
 # • getAnzahl()
@@ -117,3 +115,57 @@ main_auto()
 # zaehler.
 # Testen Sie anschließend diese Klasse mit mehreren definierten
 # Schrankobjekten.
+
+class Schrank:
+    zaehler = 0
+
+    def __init__(self, modellname, breite, tiefe, hoehe):
+        self.name = modellname
+        self.__abmessung = (breite, tiefe, hoehe)
+        self.__preis = self.getPreis()
+        Schrank.zaehler += 1
+
+    @staticmethod
+    def einheitsschrank1():
+        print(f"Das ist ein normaler Standartschrank: {'Malmoe'}, {'30x100x200'}, {199}€")
+        Schrank.zaehler += 1
+
+    @staticmethod
+    def einheitsschrank2():
+        print(f"Das ist ein normaler Standartschrank: {'Paloe'}, {'50x50x100'}, {79}€")
+        Schrank.zaehler += 1
+
+    def getVolumen(self):
+        return (self.__abmessung[0] * self.__abmessung[1] * self.__abmessung[2]) / 1000000
+
+    def getPreis(self):
+        return self.getVolumen() * 100
+
+    def get__abmessung(self):
+        return self.__abmessung
+
+    def get__preis(self):
+        return self.__preis
+
+    def getInfo(self):
+        return (f"Name : {self.name}\n"
+                f"Abmessungen b,t,h : {self.get__abmessung()}\n"
+                f"Preis : {self.get__preis()}")
+
+    @classmethod
+    def getAnzahl(cls):
+        return Schrank.zaehler
+
+
+def main_schrank():
+    schrank1 = Schrank("Schrank1", 30, 40, 100)
+    schrank2 = Schrank("Schrank2", 100, 100, 200)
+
+    print(schrank1.getInfo())
+    print(schrank2.getInfo())
+    Schrank.einheitsschrank1()
+    Schrank.einheitsschrank2()
+
+    print(Schrank.getAnzahl())
+
+main_schrank()
