@@ -17,40 +17,53 @@ class Flight:
         self.starting_data: StartLandingData = StartLandingData(Flight.default_time, Flight.default_time, 0)
 
     def show_flight_data(self):
-        print(f"Airline:    {self.__airline}\n"
-              f"Aircraft:   {self.__aircraft_type}\n"
-              f"FlightNr:   {self.__flight_number}\n"
-              f"Status:     {self.__aircraft_status}\n"
-              f"ParkingSpot:    {self.__parking_spot}\n"
-              f"Landing:  Scheduled: {self.landing_data.scheduled_time} -  Actual: {self.landing_data.actual_time} "
-              f"- Strip: {self.landing_data.strip_number}\n"
-              f"Starting: Scheduled: {self.starting_data.scheduled_time} -  Actual: {self.starting_data.actual_time} "
-              f"- Strip: {self.starting_data.strip_number}\n"
-              )
 
-    def edit_flight(self):
         if self.__aircraft_status == "Flying":
-            while self.landing_data.scheduled_time == datetime.strptime(Flight.default_time, self.landing_data.format_data):
-                date_time = input("Schedule Landing Date Time >> DD.MM.YY HH:MM:SS <<")
-                try:
-                    self.landing_data.scheduled_time = date_time
-                    print(f"Landing:  Scheduled: {self.landing_data.scheduled_time} -  "
-                          f"Actual: {self.landing_data.actual_time}\n")
-                except:
-                    print("WRONG FORMAT!\n")
+            print(f"\n{self.__flight_number} {self.__aircraft_status} {self.__airline} {self.__aircraft_type}\n"
+                  f"Landing:  Scheduled: {self.landing_data.scheduled_time}")
 
+        if self.__aircraft_status == "Landing":
+            print(f"\n{self.__flight_number} {self.__aircraft_status} on Strip: {self.landing_data.strip_number}  "
+                  f"{self.__airline} {self.__aircraft_type}\n"
+                  f"Scheduled: {self.landing_data.scheduled_time} - Actual: {self.landing_data.actual_time} ")
+
+        if self.__aircraft_status == "Parking":
+            print(f"\n{self.__flight_number} {self.__aircraft_status} on ParkingSpot: {self.__parking_spot} "
+                  f"{self.__airline} {self.__aircraft_type}\n")
+
+        if self.__aircraft_status == "Starting":
+            print(f"\n{self.__flight_number} {self.__aircraft_status} on Strip: {self.starting_data.strip_number} "
+                  f"{self.__airline} {self.__aircraft_type}\n"
+                  f"Scheduled: {self.starting_data.scheduled_time} - Actual: {self.starting_data.actual_time}")
+
+    def edit_flight(self): #######################
+        if self.__aircraft_status == "Flying":
             choice = input("Land the Flight? YES/NO").lower()
             if choice == "yes":
-                self.__land_airplane()
+                self.land_airplane()
 
-    def __land_airplane(self):
-        while self.landing_data.strip_number == 0:
-            choice = input("Choose Landing Strip: 1 - 10")
-
+    def land_airplane(self):
         pass
 
-fl = Flight("Airbus", "gutav200")
-fl.show_flight_data()
-fl.edit_flight()
-fl.show_flight_data()
-print(datetime.now().date())
+    def park_airplane(self):
+        pass
+
+    def plan_start(self):
+        pass
+
+    def start_airplane(self):
+        pass
+
+    @property
+    def flight_number(self):
+        return self.__flight_number
+
+    @property
+    def aircraft_status(self):
+        return self.__aircraft_status
+
+# fl = Flight("Airbus", "gutav200")
+# fl.show_flight_data()
+# fl.edit_flight()
+# fl.show_flight_data()
+# print(datetime.now().date())
