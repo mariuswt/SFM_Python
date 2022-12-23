@@ -79,11 +79,11 @@ class Auto:
 def main_auto():
     radio = Autoradio("Yamaha", True)
     a = Auto("VW", 100, "gruen", 100, 2, True, radio)
-    b = Auto("Audi", 100000, "blau", 100, 22, False)
+    b = Auto("Audi", 100000, "blau", 100, 22, False, radio)
 
-    autos = [Auto("VW", 100, "gruen", 100, 2, True),
-             Auto("Audi", 100000, "blau", 100, 22, False),
-             Auto("Porsche", 1000, "silber", 100, 22, True)]
+    autos = [Auto("VW", 100, "gruen", 100, 2, True, radio),
+             Auto("Audi", 100000, "blau", 100, 22, False, radio),
+             Auto("Porsche", 1000, "silber", 100, 22, True, radio)]
 
     autos[0].strecke_fahren(500)
     autos[1].strecke_fahren(50)
@@ -169,3 +169,4 @@ def main_schrank():
     print(Schrank.getAnzahl())
 
 main_schrank()
+
