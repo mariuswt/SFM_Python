@@ -41,20 +41,20 @@ class Flight:
                   f"{self.__airline} {self.__aircraft_type}\n"
                   f"Scheduled: {self.starting_data.scheduled_time} - Actual: {self.starting_data.actual_time}\n")
 
-    def land_airplane(self, landing_strip):
+    def __land_airplane(self, landing_strip):
         self.landing_data.strip_number = landing_strip
         self.landing_data.actual_time = str(datetime.now().strftime("%d.%m.%y %H:%M:%S"))
         self.__aircraft_status = Flight.status[1]
 
-    def park_airplane(self, parking_spot):
+    def __park_airplane(self, parking_spot):
         self.__parking_spot = parking_spot
         self.__aircraft_status = Flight.status[2]
 
-    def plan_start(self, starting_strip):
+    def __plan_start(self, starting_strip):
         self.starting_data.strip_number = starting_strip
         self.__aircraft_status = Flight.status[3]
 
-    def start_airplane(self):
+    def __start_airplane(self):
         self.starting_data.actual_time = str(datetime.now().strftime("%d.%m.%y %H:%M:%S"))
         self.__aircraft_status = Flight.status[4]
 

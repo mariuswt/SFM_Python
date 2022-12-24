@@ -60,16 +60,16 @@ class Airport:
             for flight in self.flights:
                 if flight.flight_number == choice:
                     if flight.aircraft_status == "Flying":
-                        self.land_airplane(flight)
+                        self.__land_airplane(flight)
                         return
                     elif flight.aircraft_status == "Landing":
-                        self.park_airplane(flight)
+                        self.__park_airplane(flight)
                         return
                     elif flight.aircraft_status == "Parking":
-                        self.plan_start(flight)
+                        self.__plan_start(flight)
                         return
                     elif flight.aircraft_status == "Planing Start":
-                        self.start_airplane(flight)
+                        self.__start_airplane(flight)
                         return
                     elif flight.aircraft_status == "Starting":
                         print("Aircraft is Flying")
@@ -77,7 +77,7 @@ class Airport:
             print("WRONG INPUT OF FLIGHT NUMBER!")
             time.sleep(2)
 
-    def land_airplane(self, flight):
+    def __land_airplane(self, flight):
         if "Free" not in self.landing_starting_strips.values():
             print("\nNo Free Landing Strip!\n")
             return
@@ -92,10 +92,10 @@ class Airport:
                 time.sleep(1)
 
         self.landing_starting_strips[landing_strip] = "Blocked"
-        flight.land_airplane(landing_strip)
+        flight.__land_airplane(landing_strip)
         print("Landed successfully\n")
 
-    def park_airplane(self, flight):
+    def __park_airplane(self, flight):
         if "Free" not in self.parking_spots.values():
             print("\nNo Free Parking Spot !\n")
             return
@@ -109,11 +109,11 @@ class Airport:
                 print("Spot is Blocked!")
                 time.sleep(1)
         self.parking_spots[parking_spot] = "Blocked"
-        flight.park_airplane(parking_spot)
+        flight.__park_airplane(parking_spot)
         self.landing_starting_strips[flight.landing_data.strip_number] = "Free"
         print("Parked successfully\n")
 
-    def plan_start(self, flight):
+    def __plan_start(self, flight):
         if "Free" not in self.landing_starting_strips.values():
             print("\nNo Free Starting Strip!\n")
             return
@@ -136,11 +136,11 @@ class Airport:
                 print("Strip is Blocked!")
                 time.sleep(1)
         self.landing_starting_strips[starting_strip] = "Blocked"
-        flight.plan_start(starting_strip)
+        flight.__plan_start(starting_strip)
         print("Planned successfully\n")
 
-    def start_airplane(self, flight):
-        flight.start_airplane()
+    def __start_airplane(self, flight):
+        flight.__start_airplane()
 
         print("Started successfully\n")
         self.landing_starting_strips[flight.starting_data.strip_number] = "Free"

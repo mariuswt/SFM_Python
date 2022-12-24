@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abf40f87-0699-4200-ba82-ff2339b97bad" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projekt/Airport.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt/Airport.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projekt/Flight.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt/Flight.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +205,7 @@
       <workItem from="1671443291869" duration="146000" />
       <workItem from="1671452609776" duration="2568000" />
       <workItem from="1671804340618" duration="28972000" />
-      <workItem from="1671879585984" duration="1898000" />
+      <workItem from="1671879585984" duration="2351000" />
     </task>
     <servers />
   </component>
