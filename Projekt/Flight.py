@@ -20,25 +20,26 @@ class Flight:
 
         if self.__aircraft_status == "Flying":
             print(f"\n{self.__flight_number} {self.__aircraft_status} {self.__airline} {self.__aircraft_type}\n"
-                  f"Landing:  Scheduled: {self.landing_data.scheduled_time}")
+                  f"Landing:  Scheduled: {self.landing_data.scheduled_time}\n")
 
         if self.__aircraft_status == "Landing":
             print(f"\n{self.__flight_number} {self.__aircraft_status} on Strip: {self.landing_data.strip_number}  "
                   f"{self.__airline} {self.__aircraft_type}\n"
-                  f"Scheduled: {self.landing_data.scheduled_time} - Actual: {self.landing_data.actual_time} ")
+                  f"Scheduled: {self.landing_data.scheduled_time} - Actual: {self.landing_data.actual_time} \n")
 
         if self.__aircraft_status == "Parking":
             print(f"\n{self.__flight_number} {self.__aircraft_status} on ParkingSpot: {self.__parking_spot} "
                   f"{self.__airline} {self.__aircraft_type}\n")
 
         if self.__aircraft_status == "Planing Start":
-            print(f"\n{self.__flight_number} {self.__aircraft_status} {self.__airline} {self.__aircraft_type}\n"
-                  f"Starting:  Scheduled: {self.starting_data.scheduled_time}")
+            print(f"\n{self.__flight_number} {self.__aircraft_status} on Strip: {self.starting_data.strip_number} "
+                  f"{self.__airline} {self.__aircraft_type}\n"
+                  f"Starting:  Scheduled: {self.starting_data.scheduled_time}\n")
 
         if self.__aircraft_status == "Started":
             print(f"\n{self.__flight_number} {self.__aircraft_status} on Strip: {self.starting_data.strip_number} "
                   f"{self.__airline} {self.__aircraft_type}\n"
-                  f"Scheduled: {self.starting_data.scheduled_time} - Actual: {self.starting_data.actual_time}")
+                  f"Scheduled: {self.starting_data.scheduled_time} - Actual: {self.starting_data.actual_time}\n")
 
     def land_airplane(self, landing_strip):
         self.landing_data.strip_number = landing_strip

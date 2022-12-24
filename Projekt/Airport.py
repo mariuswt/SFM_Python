@@ -18,7 +18,7 @@ class Airport:
         while airline == "":
             airline = str(input("Airline: "))
         while aircraft_type == "":
-            aircraft_type = input("Aircraft Type: ")
+            aircraft_type = str(input("Aircraft Type: "))
 
         if airline not in self.airlines:
             self.airlines += airline
@@ -40,18 +40,23 @@ class Airport:
 
     def show_flights(self):
         if len(self.flights) == 0:
-            print("No Fights Registered!")
+            print("\nNo Flights Registered!\n")
             return
+        print("-"*50)
         for flight in self.flights:
             flight.show_flight_data()
+        print("-" * 50)
 
     def edit_flights(self):
         if len(self.flights) == 0:
-            print("No Fights Registered!")
+            print("\nNo Flights Registered!\n")
             return
         while True:
             self.show_flights()
             choice = input("Select Flight by FlightNumber:")
+            if choice == "0":
+                print("ACTION ABORTED!\n")
+                return
             for flight in self.flights:
                 if flight.flight_number == choice:
                     if flight.aircraft_status == "Flying":
@@ -74,7 +79,7 @@ class Airport:
 
     def land_airplane(self, flight):
         if "Free" not in self.landing_starting_strips.values():
-            print("No Free Landing Strip!")
+            print("\nNo Free Landing Strip!\n")
             return
 
         landing_strip = 0
@@ -92,7 +97,7 @@ class Airport:
 
     def park_airplane(self, flight):
         if "Free" not in self.parking_spots.values():
-            print("No Free Parking Spot !")
+            print("\nNo Free Parking Spot !\n")
             return
 
         parking_spot = 0
@@ -110,7 +115,7 @@ class Airport:
 
     def plan_start(self, flight):
         if "Free" not in self.landing_starting_strips.values():
-            print("No Free Starting Strip!")
+            print("\nNo Free Starting Strip!\n")
             return
 
         while flight.starting_data.scheduled_time == datetime.strptime(Flight.default_time,
@@ -142,19 +147,22 @@ class Airport:
 
     def remove_flight(self):
         if len(self.flights) == 0:
-            print("No Fights Registered!")
+            print("No Flights Registered!")
             return
         while True:
             self.show_flights()
             choice = input("\nREMOVE Flight\nSelect Flight by Flight Number: ")
+            if choice == "0":
+                print("ACTION ABORTED!\n")
+                return
             for flight in self.flights:
                 if flight.flight_number == choice:
                     selection = input("approve removal yes/no : ").lower()
                     if selection == "yes":
                         self.flights.remove(flight)
-                        print("Fight removed!")
+                        print("Flight removed!")
                         return
                     if selection == "no":
                         print("Action aborted!")
                         return
-
+            print("*"*5, "Incorrect Flight Number", "*"*5)
