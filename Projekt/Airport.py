@@ -92,7 +92,7 @@ class Airport:
                 time.sleep(1)
 
         self.landing_starting_strips[landing_strip] = "Blocked"
-        flight.__land_airplane(landing_strip)
+        flight.land_airplane(landing_strip)
         print("Landed successfully\n")
 
     def __park_airplane(self, flight):
@@ -109,7 +109,7 @@ class Airport:
                 print("Spot is Blocked!")
                 time.sleep(1)
         self.parking_spots[parking_spot] = "Blocked"
-        flight.__park_airplane(parking_spot)
+        flight.park_airplane(parking_spot)
         self.landing_starting_strips[flight.landing_data.strip_number] = "Free"
         print("Parked successfully\n")
 
@@ -136,11 +136,11 @@ class Airport:
                 print("Strip is Blocked!")
                 time.sleep(1)
         self.landing_starting_strips[starting_strip] = "Blocked"
-        flight.__plan_start(starting_strip)
+        flight.plan_start(starting_strip)
         print("Planned successfully\n")
 
     def __start_airplane(self, flight):
-        flight.__start_airplane()
+        flight.start_airplane()
 
         print("Started successfully\n")
         self.landing_starting_strips[flight.starting_data.strip_number] = "Free"

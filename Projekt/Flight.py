@@ -25,36 +25,42 @@ class Flight:
         if self.__aircraft_status == "Landing":
             print(f"\n{self.__flight_number} {self.__aircraft_status} on Strip: {self.landing_data.strip_number}  "
                   f"{self.__airline} {self.__aircraft_type}\n"
-                  f"Scheduled: {self.landing_data.scheduled_time} - Actual: {self.landing_data.actual_time} \n")
+                  f"Landing:     Scheduled: {self.landing_data.scheduled_time} - Actual: {self.landing_data.actual_time} \n")
 
         if self.__aircraft_status == "Parking":
             print(f"\n{self.__flight_number} {self.__aircraft_status} on ParkingSpot: {self.__parking_spot} "
-                  f"{self.__airline} {self.__aircraft_type}\n")
+                  f"{self.__airline} {self.__aircraft_type}\n"
+                  f"Landing:     Scheduled: {self.landing_data.scheduled_time} - Actual: {self.landing_data.actual_time} \n")
 
         if self.__aircraft_status == "Planing Start":
             print(f"\n{self.__flight_number} {self.__aircraft_status} on Strip: {self.starting_data.strip_number} "
                   f"{self.__airline} {self.__aircraft_type}\n"
-                  f"Starting:  Scheduled: {self.starting_data.scheduled_time}\n")
+                  f"Landing:    Scheduled: {self.landing_data.scheduled_time} - Actual: {self.landing_data.actual_time} \n"
+                  f"ParkingSpot: {self.__parking_spot}\n"
+                  f"Starting:   Scheduled: {self.starting_data.scheduled_time}\n")
 
         if self.__aircraft_status == "Started":
             print(f"\n{self.__flight_number} {self.__aircraft_status} on Strip: {self.starting_data.strip_number} "
                   f"{self.__airline} {self.__aircraft_type}\n"
-                  f"Scheduled: {self.starting_data.scheduled_time} - Actual: {self.starting_data.actual_time}\n")
+                  f"Landing:    Scheduled: {self.landing_data.scheduled_time} - Actual: {self.landing_data.actual_time} \n"
+                  f"ParkingSpot: {self.__parking_spot}\n"
+                  f"Starting:   Scheduled: {self.starting_data.scheduled_time} - Actual: {self.starting_data.actual_time}\n"
+                  f"Startingstrip: {self.starting_data.strip_number}")
 
-    def __land_airplane(self, landing_strip):
+    def land_airplane(self, landing_strip):
         self.landing_data.strip_number = landing_strip
         self.landing_data.actual_time = str(datetime.now().strftime("%d.%m.%y %H:%M:%S"))
         self.__aircraft_status = Flight.status[1]
 
-    def __park_airplane(self, parking_spot):
+    def park_airplane(self, parking_spot):
         self.__parking_spot = parking_spot
         self.__aircraft_status = Flight.status[2]
 
-    def __plan_start(self, starting_strip):
+    def plan_start(self, starting_strip):
         self.starting_data.strip_number = starting_strip
         self.__aircraft_status = Flight.status[3]
 
-    def __start_airplane(self):
+    def start_airplane(self):
         self.starting_data.actual_time = str(datetime.now().strftime("%d.%m.%y %H:%M:%S"))
         self.__aircraft_status = Flight.status[4]
 
