@@ -72,3 +72,7 @@ class Flight:
     def aircraft_status(self):
         return self.__aircraft_status
 
+    @property
+    def parking_spot(self):
+        return self.__parking_spot
+
